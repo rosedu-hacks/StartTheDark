@@ -5,7 +5,7 @@
 <table>
 <% @augmented_activities.each do |aa| %>
 <tr>
-<td><%= aa.description %></td>
+<td><%= aa.description %><br>Participa <%= aa.pcount %> oameni<br>Participa <%= aa.plist %></td>
 <td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit">Vin si eu</button></form></td> 
 </tr>
 <% end %>
