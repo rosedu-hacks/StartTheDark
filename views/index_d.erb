@@ -1,1 +1,8 @@
-Hello world
+<table>
+<% @activities.each do |a| %>
+<tr>
+<td><%= a.description %></td>
+<td><button type="submit">Vin si eu</button></td> 
+</tr>
+<% end %>
+</table>
