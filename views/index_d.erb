@@ -3,8 +3,15 @@
 <% @activities.each do |a| %>
 <tr>
 <td><%= a.description %></td>
-<td><button type="submit"> Vin si eu</button></td>
+<td><button type="submit">Vin si eu</button></td>
 </tr>
 <% end %>
+<tr>
+<form method="POST" action="/doaddactivity">
+<td><input type="text" name="activity[description]" required></td>
+<td><button type="submit">Trimite propunere</button></td>
+</form>
+</tr>
 </table>
+
 </html>

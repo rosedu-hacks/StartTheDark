@@ -12,6 +12,7 @@ before do
  	p = Participant.find_by_ipaddress(request.ip)
  	if p.nil?
  		Participant.create(:ipaddress => request.ip,:nickname => request.ip, :activity_id => 0) 
+
  	end
 end
 
@@ -20,3 +21,7 @@ get '/' do
 	erb :index_d
 end
 
+post '/doaddactivity' do
+	Activity.create(:author_ipaddress => request.ip, :description => params[:activity][:description])
+	redirect '/'
+end
