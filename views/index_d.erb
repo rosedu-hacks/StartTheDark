@@ -1,8 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
 <table>
-<% @activities.each do |a| %>
+<% @augmented_activities.each do |aa| %>
 <tr>
-<td><%= a.description %></td>
-<td><button type="submit">Vin si eu</button></td> 
+<td><%= aa.description %></td>
+<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit">Vin si eu</button></form></td> 
 </tr>
 <% end %>
 <% if @allow_add_activity %>
@@ -14,3 +18,4 @@
 </tr>
 <% end %>
 </table>
+</html>
