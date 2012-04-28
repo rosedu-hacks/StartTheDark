@@ -14,7 +14,7 @@
 <% @augmented_activities.each do |aa| %>
 <tr>
 <td><%= aa.description %><br><span class="dark">Participa <%= aa.pcount %> oameni</span><br>Participa <%= aa.plist %><br>(<%= aa.author_nickname %> a venit cu propunerea.)</td>
-<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit">Vin si eu</button></form></td> 
+<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %>>Vin si eu</button></form></td> 
 </tr>
 <% end %>
 <% if @allow_add_activity %>

@@ -63,6 +63,7 @@ get '/' do
   if a.nil?
     @allow_add_activity = true
   end
+  @activity_id_of_current_user = Participant.find_by_ipaddress(request.ip).activity_id
   erb :index_d
 end
 
