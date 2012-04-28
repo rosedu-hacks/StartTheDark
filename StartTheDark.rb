@@ -8,3 +8,7 @@ end
 class Participants < ActiveRecord::Base
 end
 
+get '/' do
+  erb :index_d
+end
+
