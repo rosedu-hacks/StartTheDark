@@ -5,12 +5,14 @@ require 'sinatra/activerecord'
 class Activity < ActiveRecord::Base
 end
 
-class Participants < ActiveRecord::Base
+class Participant < ActiveRecord::Base
 end
 
 before do
-	rqip = request.ip
-#	Participants.find_by
+ 	p = Participant.find_by_ipaddress(request.ip)
+ 	if p.nil?
+ 		Participant.create(:ipaddress => request.ip,:nickname => request.ip, :activity_id => 0) 
+ 	end
 end
 
 get '/' do
