@@ -62,6 +62,8 @@ get '/' do
 	if a.nil?
 		@allow_add_activity = true
 	end
+	p = Participant.find_by_ipaddress(request.ip)
+	@activity_id_of_current_user = p.activity_id
 	erb :index_d
 end
 
@@ -77,6 +79,14 @@ post '/dosetpreference/:id' do
 	p = Participant.find_by_ipaddress(request.ip)
 	id = params[:id].to_i
 	p.activity_id = id
+	p.save
+	redirect '/'
+end
+
+post '/dochangenickname/:nick' do
+	p = Participant.find_by_ipaddress(request.ip)
+	nick = params[:participant][:nickname]
+	p.nickname = nick
 	p.save
 	redirect '/'
 end

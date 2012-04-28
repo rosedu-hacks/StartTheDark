@@ -1,16 +1,20 @@
+<!DOCTYPE html>
 <html>
+<div>
+<p>StartTheDark</p>
+<a href="javascript:showNicknamePopup();">Schimba-ti nickname-ul</a>
+</div>
 <table>
 <tr>
 <td colspan = 2><h1>Ce facem diseara?</h1></td>
 </tr>
 <% @augmented_activities.each do |aa| %>
 	<tr>
-	<td><%= aa.description %>
-		<br>Participa <%= aa.pcount %> oameni
+	<td><%= aa.description %><br>Participa <%= aa.pcount %> oameni
 		<br>Partcipa: <%= aa.plist %>
-		<br>(Adaugat de: <%= aa.author_nickname %>)
-	</td>
-	<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit">Vin si eu</button></form></td>
+		<br>(Adaugat de: <%= aa.author_nickname %>)</td>
+	<td><form method="POST" action="/dosetpreference/<%= aa.id %>">
+			<button type="submit" <% if aa.id == @activity_id_of_current_user %> disabled <% end %>>Vin si eu</button></form></td>
 	</tr>
 <% end %>
 
@@ -22,7 +26,15 @@
 	</form>
 	</tr>
 <% end %>
-
 </table>
-
+<script>
+function showNicknamePopup(){
+	var nume = prompt("Noul nickname: ");
+	document.getElementById("nickinput").value = nume;
+	document.changenickname.submit();
+}
+</script>
+<form name="changenickname" method="POST" action="/dochangenickname/:nick">
+	<td><input id="nickinput" type="hidden" name="participant[nickname]"></td>
+</form>
 </html>
