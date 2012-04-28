@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.dark {
+  background-color: gray;
+} 
+</style>
 </head>
 <table>
+<tr>
+<td colspan=2><h1>Ce facem mai pe seara?</h1></td>
+</tr>
 <% @augmented_activities.each do |aa| %>
 <tr>
-<td><%= aa.description %><br>Participa <%= aa.pcount %> oameni<br>Participa <%= aa.plist %><br>(<%= aa.author_nickname %> a venit cu propunerea.)</td>
+<td><%= aa.description %><br><span class="dark">Participa <%= aa.pcount %> oameni</span><br>Participa <%= aa.plist %><br>(<%= aa.author_nickname %> a venit cu propunerea.)</td>
 <td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit">Vin si eu</button></form></td> 
 </tr>
 <% end %>
