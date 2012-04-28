@@ -5,8 +5,29 @@
 .dark {
   background-color: gray;
 } 
+.floatleft {
+  float: left;
+}
+.floatright {
+  float: right;
+}
 </style>
+<script>
+  function showNicknamePopup()
+  {
+    var name=prompt("Schimba nickname");
+    if (name!=null && name!=""){
+      document.getElementById("nickname").value=name;
+      document.changenicknameform.submit();      
+    }
+  } 
+</script>
+
 </head>
+<body>
+<div>
+<span class="floatleft">StartTheDark</span><a class="floatright" href="javascript:showNicknamePopup();">Schimba-ti nickname-ul</a>
+</div>
 <table>
 <tr>
 <td colspan=2><h1>Ce facem mai pe seara?</h1></td>
@@ -14,7 +35,7 @@
 <% @augmented_activities.each do |aa| %>
 <tr>
 <td><%= aa.description %><br><span class="dark">Participa <%= aa.pcount %> oameni</span><br>Participa <%= aa.plist %><br>(<%= aa.author_nickname %> a venit cu propunerea.)</td>
-<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %>>Vin si eu</button></form></td> 
+<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %>>Vin&nbsp;si&nbsp;eu</button></form></td> 
 </tr>
 <% end %>
 <% if @allow_add_activity %>
@@ -26,4 +47,8 @@
 </tr>
 <% end %>
 </table>
+<form name="changenicknameform" method="POST" action="/dochangenickname">
+<input type="hidden" name="participant[nickname]" id="nickname">
+</form>
+</body>
 </html>

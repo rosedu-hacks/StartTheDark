@@ -82,6 +82,13 @@ post '/dosetpreference/:id' do
   redirect '/'
 end
 
+post '/dochangenickname' do
+  participant = Participant.find_by_ipaddress(request.ip)
+  participant.nickname = params[:participant][:nickname]
+  participant.save
+  redirect '/'
+end
+
 get "/d/seedwithdata/" do
   Activity.create(:author_ipaddress => "8.1.1.33", :description => "Mergem la un laser tag")
   Activity.create(:author_ipaddress => "8.1.1.20", :description => "Mergem la o cafenea jazzy")
