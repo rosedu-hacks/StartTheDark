@@ -6,12 +6,14 @@
 <td><button type="submit">Vin si eu</button></td>
 </tr>
 <% end %>
-<tr>
-<form method="POST" action="/doaddactivity">
-<td><input type="text" name="activity[description]" required></td>
-<td><button type="submit">Trimite propunere</button></td>
-</form>
-</tr>
+<% if @allow_add_activity %>
+	<tr>
+	<form method="POST" action="/doaddactivity">
+	<td><input type="text" name="activity[description]" required></td>
+	<td><button type="submit">Trimite propunere</button></td>
+	</form>
+	</tr>
+<% end %>
 </table>
 
 </html>

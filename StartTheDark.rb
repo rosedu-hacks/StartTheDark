@@ -1,11 +1,17 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/activerecord'
+enable :sessions
 
 class Activity < ActiveRecord::Base
+	has_many :participants
+	validates :description, :presence => true
+	#validates_presence_of :description
 end
 
 class Participant < ActiveRecord::Base
+	belongs_to :activity
+	validates :activity_id, :numericality => true
 end
 
 before do
@@ -17,6 +23,11 @@ end
 
 get '/' do
 	@activities = Activity.all
+	@allow_add_activity = false
+	a = Activity.find_by_author_ipaddress(request.ip)
+	if a.nil?
+		@allow_add_activity = true
+	end
 	erb :index_d
 end
 
