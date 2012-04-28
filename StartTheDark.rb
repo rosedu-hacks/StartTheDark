@@ -16,6 +16,7 @@ class Activity < ActiveRecord::Base
 			partlist += part.nickname
 			partlist += ", "
 		end
+		partlist = partlist[0...-1]
 		return partlist
 	end
 	def author_nickname 
