@@ -1,3 +1,4 @@
-require './StartTheDark.rb'
-require 'sinatra'
-require 'sinatra/activerecord/rake'
+require "./StartTheDark.rb"
+require "sinatra"
+require "sinatra/activerecord/rake"
+
