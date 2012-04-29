@@ -67,6 +67,11 @@ get '/' do
   erb :index_d
 end
 
+get '/d/admin/' do
+  @activities = Activity.all
+  erb :admin_d
+end
+
 post '/doaddactivity' do
   a = Activity.create(:author_ipaddress => request.ip, :description => params[:activity][:description])
   p = Participant.find_by_ipaddress(request.ip)
@@ -80,6 +85,12 @@ post '/dosetpreference/:id' do
   p.activity_id = params[:id].to_i
   p.save
   redirect '/'
+end
+
+post '/dodeleteactivity/:id' do
+  a = Activity.find(params[:id].to_i)
+  a.destroy
+  redirect '/d/admin/'
 end
 
 post '/dochangenickname' do

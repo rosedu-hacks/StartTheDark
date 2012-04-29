@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>StartTheDark Admin Interface</title>
+<meta charset="utf-8">
+<script src="http://dserban.github.com/js/jquery.js"></script>
+<script src="http://dserban.github.com/js/bootstrap-modal.js"></script>
+<link rel="stylesheet" href="http://dserban.github.com/css/bootstrap.css">
+</head>
+<body>
+<table class="table table-striped">
+<% @activities.each do |a| %>
+<tr>
+<td><%= a.description %></td>
+<td><form method="POST" action="/dodeleteactivity/<%= a.id %>"><button type="submit" class="btn btn-danger btn-mini">Sterge</button></form></td>
+</tr>
+<% end %>
+</table>
+</body>
+</html>
