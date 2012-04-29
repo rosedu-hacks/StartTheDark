@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
+<script src="http://dserban.github.com/js/jquery.js"></script>
+<script src="http://dserban.github.com/js/bootstrap-modal.js"></script>
+<link rel="stylesheet" href="http://dserban.github.com/css/bootstrap.css">
 <head>
+<meta charset="utf-8">
 <style>
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.floattop {
+  float: top;
+}
 .dark {
   background-color: gray;
+}
+.header {
+  background-color: #bbbbbb;
+  color: white;
+  padding: 10px;
 } 
 .floatleft {
   float: left;
 }
 .floatright {
   float: right;
+}
+.clearboth {
+  clear: both;
+}
+.pushinwards {
+  padding-left: 100px;
+  padding-right: 100px;
 }
 </style>
 <script>
@@ -22,31 +45,48 @@
     }
   } 
 </script>
-
 </head>
 <body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner">
+<div class="container">
+<span class="brand" style="color: white;">StartTheDark</span>
 <div>
-<span class="floatleft">StartTheDark</span><a class="floatright" href="javascript:showNicknamePopup();">Schimba-ti nickname-ul</a>
+<ul class="nav pull-right">
+<li><a href="javascript:showNicknamePopup();">Schimbă-ți nickname-ul</a></li>
+<li><a href="/m/">Mobile User Experience</a></li>
+</ul>
 </div>
-<table>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="span12">
+<div class="hero-unit">
+<table class="table table-striped">
 <tr>
 <td colspan=2><h1>Ce facem mai pe seara?</h1></td>
 </tr>
 <% @augmented_activities.each do |aa| %>
 <tr>
-<td><%= aa.description %><br><span class="dark">Participa <%= aa.pcount %> oameni</span><br>Participa <%= aa.plist %><br>(<%= aa.author_nickname %> a venit cu propunerea.)</td>
-<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %>>Vin&nbsp;si&nbsp;eu</button></form></td> 
+<td><h3><strong><%= aa.description %></strong></h3><% if aa.pcount>0 %><span class="label label-info">Participa <%= aa.pcount %> oameni</span><br>Participa <%= aa.plist %><br><% end  %>(<%= aa.author_nickname %> a venit cu propunerea.)</td>
+<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %> class="btn btn-inverse btn-mini">Vin&nbsp;si&nbsp;eu</button></form></td> 
 </tr>
 <% end %>
 <% if @allow_add_activity %>
 <tr>
 <form method="POST" action="/doaddactivity">
 <td><input type="text" name="activity[description]" required></td>
-<td><button type="submit">Trimite propunere</button></td>
+<td><button type="submit" class="btn btn-primary btn-mini">Trimite propunere</button></td>
 </form>
 </tr>
 <% end %>
 </table>
+</div>
+</div>
+</div>
+</div>
 <form name="changenicknameform" method="POST" action="/dochangenickname">
 <input type="hidden" name="participant[nickname]" id="nickname">
 </form>

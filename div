@@ -1,0 +1,22 @@
+<html>
+.floattop {
+  float: top;
+}
+.floatleft {
+  float: left;
+}
+<body>
+<div id="content">
+<div id="header" class="floattop">
+</div>
+<div id="midsection" class="floattop">
+<div id="leftcolumn" class="floatleft">
+</div>
+<div id="rightcolumn" class="floatleft">
+</div>
+</div>
+<div id="footer" class="floattop">
+</div>
+</div>
+</body>
+</html>
