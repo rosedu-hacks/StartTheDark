@@ -10,8 +10,8 @@
 </head>
 <body>
 <div data-role="page" id="main">
-<div data-role="header">
-<h1>Ce facem mai pe seară?</h1>
+<div data-role="header" data-position="fixed">
+<h1>StartTheDark</h1>
 <% if @allow_add_activity %>
 <a href="#addactivityform" data-rel="dialog" data-transition="pop" class="ui-btn-right">Propun eu</a>
 <% end %>
@@ -26,6 +26,10 @@
 <% end %>
 </ul>
 </div><!-- /content -->
+<div data-role="footer" data-position="fixed">
+<h1></h1>
+<a href="/d/" data-ajax="false" class="ui-btn-right">Desktop UX</a>
+</div>
 </div><!-- /page -->
 <% @augmented_activities.each do |aa| %>
 <div data-role="page" id="activity<%= aa.id %>">
