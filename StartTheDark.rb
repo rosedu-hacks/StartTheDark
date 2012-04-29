@@ -65,15 +65,14 @@ class AugmentedActivity
 end
 
 before do
-  p "debug before filter"
-  p request.ip
+	session[:ux] = "d" unless session[:ux] == "m"
   p = Participant.find_by_ipaddress(request.ip)
   if p.nil?
     Participant.create(:ipaddress => request.ip, :nickname => request.ip, :activity_id => 0 )
   end
 end
 
-get '/' do
+def collect_data
   @activities = Activity.all
   @augmented_activities = []
   @activities.each do |a|
@@ -86,7 +85,27 @@ get '/' do
     @allow_add_activity = true
   end
   @activity_id_of_current_user = Participant.find_by_ipaddress(request.ip).activity_id
-  erb :index_d
+end
+
+get '/' do
+	if session[:ux] == "d"
+		redirect '/d/'
+	end
+	if session[:ux] == "m"
+		redirect '/m/'
+	end
+end
+
+get '/d/' do
+	session[:ux] = "d"
+	collect_data
+	erb :index_d
+end
+
+get '/m/' do
+	session[:ux] = "m"
+	collect_data
+	erb :index_m
 end
 
 get '/d/admin/' do

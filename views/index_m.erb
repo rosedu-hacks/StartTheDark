@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>StartTheDark</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://dserban.github.com/js/jquery.js"></script>
+<script src="http://dserban.github.com/js/jquerymobile.js"></script>
+<link rel="stylesheet" href="http://dserban.github.com/css/jquerymobile.css">
+</head>
+<body>
+<div data-role="page" id="main">
+<div data-role="header">
+<h1>Ce facem mai pe seară?</h1>
+<% if @allow_add_activity %>
+<a href="#addactivityform" data-rel="dialog" data-transition="pop" class="ui-btn-right">Propun eu</a>
+<% end %>
+</div><!-- /header -->
+<div data-role="content">
+<% if @augmented_activities.blank? %>
+<h3>Încă nu a propus nimeni nimic.</h3>
+<% end %>
+<ul data-role="listview" data-inset="true">
+<% @augmented_activities.each do |aa| %>
+<li><a href="#activity<%= aa.id %>" data-rel="dialog" data-transition="pop"><%= aa.description %><% if aa.pcount > 0 %><span class="ui-li-count"><%= aa.pcount %></span><% end %></a></li>
+<% end %>
+</ul>
+</div><!-- /content -->
+</div><!-- /page -->
+<% @augmented_activities.each do |aa| %>
+<div data-role="page" id="activity<%= aa.id %>">
+<div data-role="header">
+<h1></h1>
+</div><!-- /header -->
+<div data-role="content">	
+<h2><%= aa.description %></h2>
+<p><% if aa.pcount > 0 %><strong>Participă <%= aa.pcount %> oameni:</strong><br><%= aa.plist %><br><br><% end %>(<%= aa.author_nickname %> a venit cu propunerea.)</p>		
+<p><a href="#main" data-rel="back" data-role="button" data-inline="true" data-icon="arrow-l"></a></p>	
+</div><!-- /content -->
+<div data-role="footer">
+<h4></h4>
+</div><!-- /footer -->
+</div>
+<% end %>
+<div data-role="page" id="addactivityform">
+<div data-role="header">
+<h1></h1>
+</div><!-- /header -->
+<div data-role="content">	
+<h2>Propunerea ta:</h2>
+<form data-ajax="false" action="/doaddactivity" method="POST">
+<label for="propunere"></label>
+<input type="text" name="activity[description]" id="propunere">
+<button type="submit">Trimite</button>	
+</form>
+</div><!-- /content -->
+<div data-role="footer">
+<h4></h4>
+</div><!-- /footer -->
+</div>
+</body>
+</html>
+
