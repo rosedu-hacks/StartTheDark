@@ -4,6 +4,28 @@ require 'sinatra/activerecord'
 
 enable :sessions
 
+configure do
+  db = URI.parse(ENV['DATABASE_URL'] || 'sqlite://development.db')
+
+  options = {
+    :adapter => db.scheme,
+    :host => db.host,
+    :port => db.port,
+    :database => db.path[1..-1],
+    :username => db.user,
+    :password => db.password
+  }
+  case db.scheme
+  when "sqlite"
+    options[:adapter] = "sqlite3"
+    options[:database] = db.host
+  when "postgres"
+    options[:adapter] = "postgresql"
+  end
+
+  ActiveRecord::Base.establish_connection(options)
+end
+
 class Activity < ActiveRecord::Base
   has_many :participants
   validates :description, :presence => true
