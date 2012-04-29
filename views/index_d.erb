@@ -39,7 +39,7 @@ body {
 <script>
   function showNicknamePopup()
   {
-    var name=prompt("Schimba nickname");
+    var name=prompt("Schimbă-ți nickname-ul");
     if (name!=null && name!=""){
       document.getElementById("nickname").value=name;
       document.changenicknameform.submit();      
@@ -67,12 +67,12 @@ body {
 <div class="hero-unit">
 <table class="table table-striped">
 <tr>
-<td colspan=2><h1>Ce facem mai pe seara?</h1></td>
+<td colspan=2><h1>Ce facem mai pe seară?</h1></td>
 </tr>
 <% @augmented_activities.each do |aa| %>
 <tr>
-<td><h3><strong><%= aa.description %></strong></h3><% if aa.pcount>0 %><span class="label label-info">Participa <%= aa.pcount %> oameni</span><br>Participa <%= aa.plist %><br><% end  %>(<%= aa.author_nickname %> a venit cu propunerea.)</td>
-<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %> class="btn btn-inverse btn-mini">Vin&nbsp;si&nbsp;eu</button></form></td> 
+<td><h3><strong><%= aa.description %></strong></h3><% if aa.pcount>0 %><span class="label label-info">Participă <%= aa.pcount %> oameni</span><br>Participă <%= aa.plist %><br><% end  %>(<%= aa.author_nickname %> a venit cu propunerea.)</td>
+<td><form method="POST" action="/dosetpreference/<%= aa.id %>"><button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %> class="btn btn-inverse btn-mini">Vin&nbsp;și&nbsp;eu</button></form></td> 
 </tr>
 <% end %>
 <% if @allow_add_activity %>

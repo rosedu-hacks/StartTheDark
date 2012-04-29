@@ -27,6 +27,7 @@
 </ul>
 </div><!-- /content -->
 <div data-role="footer" data-position="fixed">
+<a href="#changenicknameform" data-rel="dialog" data-transition="pop">Nick</a>
 <h1></h1>
 <a href="/d/" data-ajax="false" class="ui-btn-right">Desktop UX</a>
 </div>
@@ -41,7 +42,7 @@
 <p><% if aa.pcount > 0 %><strong>Participă <%= aa.pcount %> oameni:</strong><br><%= aa.plist %><br><br><% end %>(<%= aa.author_nickname %> a venit cu propunerea.)</p>		
 <p>
 <form data-ajax="false" action="/dosetpreference/<%= aa.id %>" method="POST">
-<button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %>>Vin si eu</button>
+<button type="submit"<% if aa.id == @activity_id_of_current_user %> disabled<% end %>>Vin și eu</button>
 </form>
 </p>	
 </div><!-- /content -->
@@ -59,6 +60,22 @@
 <form data-ajax="false" action="/doaddactivity" method="POST">
 <label for="propunere"></label>
 <input type="text" name="activity[description]" id="propunere">
+<button type="submit">Trimite</button>	
+</form>
+</div><!-- /content -->
+<div data-role="footer">
+<h4></h4>
+</div><!-- /footer -->
+</div>
+<div data-role="page" id="changenicknameform">
+<div data-role="header">
+<h1></h1>
+</div><!-- /header -->
+<div data-role="content">	
+<h2>Schimbă-ți nickname-ul</h2>
+<form data-ajax="false" action="/dochangenickname" method="POST">
+<label for="nickname"></label>
+<input type="text" name="participant[nickname]" id="nickname">
 <button type="submit">Trimite</button>	
 </form>
 </div><!-- /content -->
