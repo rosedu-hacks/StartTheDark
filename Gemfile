@@ -1,6 +1,6 @@
-source 'http://rubygems.org'
+source :rubygems
 
-gem 'sqlite3'
 gem 'sinatra'
 gem 'activerecord'
 gem 'sinatra-activerecord'
+
