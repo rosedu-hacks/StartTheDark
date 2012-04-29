@@ -84,6 +84,11 @@ def collect_data
   if a.nil?
     @allow_add_activity = true
   end
+  @prompt_for_nickname = false
+  participant = Participant.find_by_ipaddress(request.ip)
+  if participant.ipaddress == participant.nickname
+    @prompt_for_nickname = true
+  end
   @activity_id_of_current_user = Participant.find_by_ipaddress(request.ip).activity_id
 end
 

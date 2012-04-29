@@ -39,7 +39,7 @@ body {
 <script>
   function showNicknamePopup()
   {
-    var name=prompt("Schimbă-ți nickname-ul");
+    var name=prompt("Alege-ți un nickname");
     if (name!=null && name!=""){
       document.getElementById("nickname").value=name;
       document.changenicknameform.submit();      
@@ -93,3 +93,13 @@ body {
 </form>
 </body>
 </html>
+<% if @prompt_for_nickname %>
+<script>
+$(document).ready(function() {
+  showNicknamePopup();
+});
+</script>
+<% end %>
+
+
+
