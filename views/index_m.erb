@@ -35,7 +35,11 @@
 <div data-role="content">	
 <h2><%= aa.description %></h2>
 <p><% if aa.pcount > 0 %><strong>Participă <%= aa.pcount %> oameni:</strong><br><%= aa.plist %><br><br><% end %>(<%= aa.author_nickname %> a venit cu propunerea.)</p>		
-<p><a href="#main" data-rel="back" data-role="button" data-inline="true" data-icon="arrow-l"></a></p>	
+<p>
+<form data-ajax="false" action="/dosetpreference/<%= aa.id %>" method="POST">
+<button type="submit">Vin si eu</button>
+</form>
+</p>	
 </div><!-- /content -->
 <div data-role="footer">
 <h4></h4>
