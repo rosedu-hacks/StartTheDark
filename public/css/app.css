@@ -1,5 +1,12 @@
 .cineparticipa {
-	color: red;
+	font-style: italic;
+}
+.author {
+	font-size: 10px;
+}
+.authorname {
+	font-size: 12px;
+	color: #777777;
 }
 
 body

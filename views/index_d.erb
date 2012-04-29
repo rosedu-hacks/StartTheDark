@@ -30,7 +30,7 @@
 	<tr>
 	<td><h3><strong><%= aa.description %></strong></h3><span class="label label-info">Participa <%= aa.pcount %> oameni</span>
 		<br><span class="cineparticipa">Participa: <%= aa.plist %></span>
-		<br>(Adaugat de: <%= aa.author_nickname %>)</td>
+		<br><span class="author">Adaugat de:</span><span class="authorname"> <%= aa.author_nickname %></span></td>
 	<td><form method="POST" action="/dosetpreference/<%= aa.id %>">
 			<button class="btn btn-inverse btn-mini" type="submit" <% if aa.id == @activity_id_of_current_user %> disabled <% end %>>Vin si eu</button></form></td>
 	</tr>
