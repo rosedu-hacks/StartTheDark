@@ -1,3 +1,3 @@
-require "StartTheDark"
+require "StartTheDark.rb"
 run Sinatra::Application
 
